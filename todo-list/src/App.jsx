@@ -2,8 +2,7 @@ import { useState } from "react";
 import "./App.css";
 import leftArrow from "./assets/left-arrow.svg";
 import rightArrow from "./assets/right-arrow.svg";
-import Carousel from "./Carousel";
-
+import MyCarousel from "./MyCarousel";
 
 export default function App() {
   const [task, setTask] = useState(""); // use in component so that only that corresponding component re-render, other this parent will re-render on each change
@@ -23,7 +22,8 @@ export default function App() {
     setIsOpen(false);
   }
 
-  function handleInput(e) { // it is a synthetic event, different from DOM event (actual event)
+  function handleInput(e) {
+    // it is a synthetic event, different from DOM event (actual event)
     setTask(e.target.value);
   }
   function handleDesc(e) {
@@ -40,7 +40,7 @@ export default function App() {
         setDescErr("*desc can't be empty");
       }
     } else {
-      setCards([...cards, [task, desc]]);// use array of object (most common) > less conflicting 
+      setCards([...cards, [task, desc]]); // use array of object (most common) > less conflicting
       handleRemove();
       setTask("");
       setDesc("");
@@ -65,10 +65,9 @@ export default function App() {
           />
           <h3 className="text-2xl font-bold text-center w-full">Todo List</h3>
         </header>
-        <main className="flex justify-center flex-col ">
-          <div className="w-full h-[200px] bg-[#f3f3f3] flex justify-center items-center">
-            
-            <Carousel />
+        <main className="flex justify-center flex-col gap-4 ">
+          <div className="w-full px-4 h-[200px] bg-[#f3f3f3]--x flex justify-center items-center">
+            <MyCarousel />
           </div>
           <section className="flex flex-col items-center justify-center w-[97%] m-auto max-w-full h-full bg-[#e3e3e3] p-4 gap-4">
             <h2 className="text-2xl">Todo</h2>
@@ -80,7 +79,10 @@ export default function App() {
             </button>
             <ul className="cards bg-white p-5 rounded w-[90%] h-fit flex flex-wrap gap-5 justify-center">
               {cards.map((card, index) => (
-                <li key={index} className="TodoCard bg-yellow-50 shadow border-2 rounded-xs w-[300px] h-[150px]">
+                <li
+                  key={index}
+                  className="TodoCard bg-yellow-50 shadow border-2 rounded-xs w-[300px] h-[150px]"
+                >
                   <div className=" flex-col justify-between items-center w-full p-2">
                     <div className="title flex justify-between">
                       <span className="text-lg">{card[0]}</span>
@@ -110,7 +112,7 @@ export default function App() {
                     <input
                       onChange={handleInput}
                       onKeyDown={handleKeyDown}
-                      value={task} // adding the value attribute of input as task 
+                      value={task} // adding the value attribute of input as task
                       type="text"
                       placeholder="Enter new task"
                       className="border-1 rounded pl-2 w-full h-8"
@@ -156,24 +158,24 @@ export default function App() {
 
 export function Button({ className, children, ...props }) {
   // this is destructuring
-  return 
-  <button {...props} // this is also destructuring all the values that were in the props object
-  className={`${className} p-4, flex-2/12, m-4, flex justify-center`}
+  return;
+  <button
+    {...props} // this is also destructuring all the values that were in the props object
+    className={`${className} p-4, flex-2/12, m-4, flex justify-center`}
   >
-  {children}
+    {children}
   </button>;
 }
 
 // const val1 = handleSubmit(123); // I called the function to val1, and it gets the returned value
 // const val2 = () => handleSubmit(123); // i assigned the arrow function to val2
 
-// in event listener we just pass the name of function, we don't call the function 
-// if i want to pass some value in the function as argument then use arrary function 
-// ex: 
+// in event listener we just pass the name of function, we don't call the function
+// if i want to pass some value in the function as argument then use arrary function
+// ex:
 // onClick = {handleSubmit}
 // onClick = {handleSubmit(123)} // don't do this thing, it will call the function execution, it will not wait of the click event
 // onClick = {() => handleSubmit(123)} // to pass the data
-
 
 // object.entries(obj) > convert to 2d array
 // object.key(obj) > give all keys
@@ -184,13 +186,12 @@ export function Button({ className, children, ...props }) {
 // upadting using callback function
 
 // useEffect
-// component mounted > first time jab component ui pe aaya 
-// shallow check, shallow compare > like shallow copy, it only check till level 1 
+// component mounted > first time jab component ui pe aaya
+// shallow check, shallow compare > like shallow copy, it only check till level 1
 
 // function timerFn(){
 
 // }
 
 // component react life cycle
-// mount > clean up > unmout >> re-mount 
-
+// mount > clean up > unmout >> re-mount
