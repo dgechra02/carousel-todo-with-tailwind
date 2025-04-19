@@ -80,7 +80,7 @@ export default function App() {
 
   return (
     <>
-      <div className="App flex flex-col bg-amber-50 min-h-dvh">
+      <div className="App flex flex-col bg-lime-500 min-h-dvh ">
         <header className="w-full flex items-center relative p-4">
           <img
             className="w-10 absolute"
